@@ -1,9 +1,13 @@
 %html
   %head
+    %script{src: '/js/jquery.min.js'}
+    %script{src: '/js/showdown.js'}
+
   %body
     %form{method: 'post'}
       #markdown
         %input#save.btn{type: 'submit', value: 'save'}
         %p
           %textarea#content{name: 'content'}<= @content
-
+  #html_out
+  %script{src: '/js/app.js'}
