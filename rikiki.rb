@@ -18,6 +18,13 @@ end
 def get_filename(path)
   path += 'index' if path =~ /\/$/
   filename = "pages#{path}.md"
+  init_file(filename)
   filename
+end
+
+def init_file(fullpath)
+  dname = File.dirname(fullpath)
+  Dir.mkdir(dname) unless Dir.exists?(dname)
+  File.open(fullpath, "w") {} unless File.exists?(fullpath)
 end
 
