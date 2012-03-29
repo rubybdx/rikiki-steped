@@ -14,6 +14,7 @@ end
 post %r{/wiki(/.*)} do |path|
   filename = get_filename(path)
   File.open(filename, 'w') { |f| f.write(params[:content]) }
+  params[:content]
 end
 
 def get_filename(path)
