@@ -6,22 +6,22 @@ get '/' do
 end
 
 get %r{/wiki(/.*)} do |path|
-  filename = get_filename(path)
+  path,filename = filename_path(path)
   @content = File.open(filename, 'rb') { |f| f.read }
   haml :main
 end
 
 post %r{/wiki(/.*)} do |path|
-  filename = get_filename(path)
+  path,filename = filename_path(path)
   File.open(filename, 'w') { |f| f.write(params[:content]) }
-  params[:content]
+  redirect "/wiki#{path}"
 end
 
-def get_filename(path)
+def filename_path(path)
   path += 'index' if path =~ /\/$/
   filename = "pages#{path}.md"
   init_file(filename)
-  filename
+  [path,filename]
 end
 
 def init_file(fullpath)
