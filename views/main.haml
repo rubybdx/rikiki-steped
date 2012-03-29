@@ -1,0 +1,9 @@
+%html
+  %head
+  %body
+    %form{method: 'post'}
+      #markdown
+        %input#save.btn{type: 'submit', value: 'save'}
+        %p
+          %textarea#content{name: 'content'}<= @content
+

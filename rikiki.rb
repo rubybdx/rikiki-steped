@@ -8,6 +8,7 @@ end
 get %r{/wiki(/.*)} do |path|
   filename = get_filename(path)
   @content = File.open(filename, 'rb') { |f| f.read }
+  haml :main
 end
 
 post %r{/wiki(/.*)} do |path|
